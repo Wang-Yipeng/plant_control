@@ -1,0 +1,46 @@
+
+#include "led.h"
+
+
+void Ini_LED(){
+	
+	for(int i=0;i<2;i++){
+			
+		HAL_Delay(200);
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_3,GPIO_PIN_RESET); //LED0좋
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_4,GPIO_PIN_RESET); //LED0좋
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_RESET); //LED0좋
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_6,GPIO_PIN_RESET); //LED0좋
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_7,GPIO_PIN_RESET); //LED0좋
+			
+		HAL_Delay(200);
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_3,GPIO_PIN_SET); //LED0좋
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_4,GPIO_PIN_SET); //LED0좋
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_SET); //LED0좋
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_6,GPIO_PIN_SET); //LED0좋
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_7,GPIO_PIN_SET); //LED0좋
+		
+		}
+
+
+}
+
+
+void unxx_led_timer_callback(){
+
+
+
+		if(HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_4)==GPIO_PIN_SET){
+			HAL_GPIO_WritePin(GPIOB,GPIO_PIN_4,GPIO_PIN_RESET); //LED0좋
+		
+		} 
+		else{
+		
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_4,GPIO_PIN_SET); //LED0좋
+		}
+
+
+
+
+
+}

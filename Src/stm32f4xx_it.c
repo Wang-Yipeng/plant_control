@@ -45,6 +45,7 @@ extern TIM_HandleTypeDef htim7;
 extern UART_HandleTypeDef huart4;
 extern UART_HandleTypeDef huart3;
 extern UART_HandleTypeDef huart6;
+extern UART_HandleTypeDef huart2;
 
 /******************************************************************************/
 /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
@@ -246,6 +247,11 @@ void EXTI15_10_IRQHandler(void)
 void UART4_IRQHandler(void)
 {
   /* USER CODE BEGIN UART4_IRQn 0 */
+
+//	uint8_t K1_RxBuffer2[20]="UART4_IRQHandler \r\n";
+//	HAL_UART_Transmit(&huart2, K1_RxBuffer2,20,1000);
+
+	
 	if((__HAL_UART_GET_FLAG(&huart4,UART_FLAG_RXNE)!=RESET)){
 		
   	//HAL_UART_Receive(&huart1, &Res,1,1000);
@@ -255,7 +261,7 @@ void UART4_IRQHandler(void)
 	//write_buff(Res);
 		
 	}
-	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_4,GPIO_PIN_RESET); //LED1¡¡
+//	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_RESET); //LED1¡¡
   /* USER CODE END UART4_IRQn 0 */
   HAL_UART_IRQHandler(&huart4);
   /* USER CODE BEGIN UART4_IRQn 1 */

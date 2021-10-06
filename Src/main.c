@@ -48,10 +48,11 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim7;
 
-UART_HandleTypeDef huart4;
-UART_HandleTypeDef huart2;
-UART_HandleTypeDef huart3;
-UART_HandleTypeDef huart6;
+UART_HandleTypeDef huart4;   //普通串口
+UART_HandleTypeDef huart2;   //print,调试串口
+UART_HandleTypeDef huart3;	//RS422B
+UART_HandleTypeDef huart6;   //RS422A
+
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -179,7 +180,7 @@ int main(void)
   
   HAL_UART_Receive_IT(&huart4, (unsigned char *)aRxBuffer2, 1);	
   
-    eMBInit(MB_RTU, 0x04, 0x06, 115200, MB_PAR_NONE);
+ //   eMBInit(MB_RTU, 0x04, 0x06, 115200, MB_PAR_NONE);
 	// 从机地址为04，使用串口06，设置波特率为115200，没有奇偶校验
 	//单条指令格式为：  地址	功能代码	数据地址	数据	LRC高字节	LRC低字节
 	//04 03 00 00 00 01 84 5F
@@ -196,15 +197,20 @@ int main(void)
 	//04 06 00 00 FF EE 48 23
 	//04 03 00 00 00 01 84 5F
 	
-	eMBEnable();
+//	eMBEnable();
   
  //LEDIO测试
  
-	uint8_t K1_RxBuffer1[20]="422A发送正常 \r\n";	
-	HAL_UART_Transmit(&huart6, K1_RxBuffer1,20,1000);
-	HAL_UART_Transmit(&huart3, K1_RxBuffer1,20,1000);
-	HAL_UART_Transmit(&huart2, K1_RxBuffer1,20,1000);
-	HAL_UART_Transmit(&huart4, K1_RxBuffer1,20,1000);
+	uint8_t K1_RxBuffer6[20]="K1_RxBuffer6-T \r\n";	
+	uint8_t K1_RxBuffer3[20]="K1_RxBuffer3-T \r\n";
+	uint8_t K1_RxBuffer2[20]="K1_RxBuffer2-T \r\n";
+	uint8_t K1_RxBuffer4[20]="K1_RxBuffer4-T \r\n";
+	HAL_UART_Transmit(&huart6, K1_RxBuffer6,20,1000);
+	HAL_UART_Transmit(&huart3, K1_RxBuffer3,20,1000);
+	HAL_UART_Transmit(&huart2, K1_RxBuffer2,20,1000);
+	HAL_UART_Transmit(&huart4, K1_RxBuffer4,20,1000);
+	
+	
 //	uint8_t K2_RxBuffer1[20]="422B发送正常 \r\n";	
 //	HAL_UART_Transmit(&huart4, K2_RxBuffer1,20,1000);
 //	uint8_t K3_RxBuffer1[20]="422A发送正常 \r\n";	
@@ -312,12 +318,20 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
 
-		eMBPoll();
+	//	eMBPoll();
 		
-	printf("\r\n WHILE_print \r\n");
+	//	printf("\r\n WHILE_print \r\n");
+//		uint8_t K1_RxBuffer6[20]="K1_RxBuffer6-T \r\n";	
+//		uint8_t K1_RxBuffer3[20]="K1_RxBuffer3-T \r\n";
+//		uint8_t K1_RxBuffer2[20]="K1_RxBuffer2-T \r\n";
+//		uint8_t K1_RxBuffer4[20]="K1_RxBuffer4-T \r\n";
+//		HAL_UART_Transmit(&huart6, K1_RxBuffer6,20,1000);
+//		HAL_UART_Transmit(&huart3, K1_RxBuffer3,20,1000);
+//		HAL_UART_Transmit(&huart2, K1_RxBuffer2,20,1000);
+//		HAL_UART_Transmit(&huart4, K1_RxBuffer4,20,1000);
 		
-		HAL_Delay(1000);
-		
+		HAL_Delay(3000);
+		printf("\r\n diffheading：%f \r\n",diffheading);
 //		short newheading1;
 //		memcpy(&newheading1,&sensordata[4],2);
 //		float diffheading=(float)(FloatHomeHeading-newheading1)/32768*180;

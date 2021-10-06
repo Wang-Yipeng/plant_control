@@ -35,3 +35,5 @@ pro811\uart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 pro811\uart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 pro811\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 pro811\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+pro811\uart.o: ../Inc/oem7crc32.h
+pro811\uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h

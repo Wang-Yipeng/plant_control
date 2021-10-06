@@ -22,6 +22,7 @@
 "pro811\led.o"
 "pro811\pid_control.o"
 "pro811\uart.o"
+"pro811\oem7crc32.o"
 "pro811\system_stm32f4xx.o"
 "pro811\startup_stm32f429xx.o"
 "pro811\mb.o"
